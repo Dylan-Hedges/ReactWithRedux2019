@@ -1,23 +1,29 @@
-// Imports the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import faker from 'faker';
 
-
-//Creates a React component
 const App = () => {
-  const buttonText = { text: 'Click me'};
-  const labelText = 'Enter Name: '
-  return (
-  <div>
-    <label className="labelName" htmlFor="name">{labelText}</label>
-    <input id="name" type="text"/>
-    <button style={{backgroundColor: 'blue', color: 'white'}}> {buttonText.text} </button>
-  </div>
-  )
+  return(
+    <div className="ui container comments">
+      <div className="comment">
+        <a href="/" className="avatar">
+          <img alt="avatar" src={faker.image.avatar()}/>
+        </a>
+        <div className="content">
+          <a href="/" className="author">
+            Sam
+          </a>
+          <div className="metadata">
+            <span className="date"> Today at 6:00pm</span>
+          </div>
+          <div className="text"> Nice blog post!</div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-//Shows React component on screen
 ReactDOM.render(
   <App />,
   document.querySelector('#root')
-);
+)
