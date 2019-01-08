@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const App = () =>{
-  return <div>index.js</div>
+const SeasonDisplay = () => {
+  return <div> Season Display </div>
 };
 
 ReactDOM.render(
