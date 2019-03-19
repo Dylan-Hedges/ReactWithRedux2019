@@ -3,12 +3,41 @@ import ReactDOM from 'react-dom';
 
 //Accesses Geolocation API built into most modern browsers
 class App extends Component {
-  render(){
+  //Intalizes state - called before everything, not React specific
+  constructor(props){
+    //Calls the "Componet" constructor function - needs to be done every time
+    super(props);
+    //Initalizes state - the ONLY time we mutate it directly
+    this.state = {
+      lat: null,
+      errorMessage: ''
+    };
     window.navigator.geolocation.getCurrentPosition(
-      (position) => console.log(position),
-      (err) => console.log(err)
+      position => {
+        //Updates state
+        this.setState(
+          {lat: position.coords.latitude}
+        );
+      },
+      err => {
+        this.setState({errorMessage: err.message})
+      }
     );
-    return <div>Latitude:</div>
+  }
+
+  //Required by React for components
+  render(){
+    if(this.state.errorMessage && !this.state.lat){
+      return <div> Error: {this.state.errorMessage}</div>
+    }
+
+    if(!this.state.errorMessage && this.state.lat){
+      return <div> Latitude: {this.state.lat}</div>
+    }
+
+    if(!this.state.errorMessage && !this.state.lat){
+      return <div> Loading</div>
+    }
   }
 }
 
