@@ -9,7 +9,7 @@ class App extends Component {
     lat: null,
     errorMessage: ''
   };
-  //Gets user location and updates state - after component has mounted
+  //Gets user latitude and longitude - after component has mounted, sets state
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       position => {
@@ -27,7 +27,7 @@ class App extends Component {
     console.log('Component had been updated - it rerendered');
   }
 
-  //Required by React for components
+  //Renders component - Required for React
   render(){
     if(this.state.errorMessage && !this.state.lat){
       return <div> Error: {this.state.errorMessage}</div>
