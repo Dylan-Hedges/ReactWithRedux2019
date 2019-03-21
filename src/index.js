@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay.js';
 import Spinner from './Spinner';
 
-//Accesses Geolocation API built into most modern browsers
+
 class App extends Component {
   //Intalizes state - called before everything, not React specific
   state = {
     lat: null,
     errorMessage: ''
   };
-  //Gets user latitude and longitude - after component has mounted, sets state
+
+  //Gets user latitude and longitude - after component has mounted, sets state, Accesses Geolocation API built into most modern browsers
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       position => {
@@ -28,8 +29,8 @@ class App extends Component {
     console.log('Component had been updated - it rerendered');
   }
 
-  //Renders component - Required for React
-  render(){
+  //Decides what is displayed on screen - conditional rendering, best practice is to not put this logic directly in render()
+  renderContent(){
     if(this.state.errorMessage && !this.state.lat){
       return <div> Error: {this.state.errorMessage}</div>
     }
@@ -39,8 +40,17 @@ class App extends Component {
     }
 
     if(!this.state.errorMessage && !this.state.lat){
-      return <Spinner />
+      return <Spinner message="Please accept location request"/>
     }
+  }
+
+  //Renders component - Required for React
+  render(){
+    return(
+      <div className="border-red">
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 
