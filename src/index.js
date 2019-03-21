@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay.js';
+import Spinner from './Spinner';
 
 //Accesses Geolocation API built into most modern browsers
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
     }
 
     if(!this.state.errorMessage && !this.state.lat){
-      return <div> Loading</div>
+      return <Spinner />
     }
   }
 }
