@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import postsReducer from './postsReducer';
 
+//Maps reducers to Redux store
 export default combineReducers({
-  replaceMe: postsReducer
+  posts: postsReducer
 });

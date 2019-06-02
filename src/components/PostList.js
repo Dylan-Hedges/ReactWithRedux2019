@@ -11,5 +11,9 @@ class PostList extends React.Component {
   }
 }
 
+//State = entire Redux store; state.posts = the postsReducer
+const mapStateToProps = (state) =>{
+  return { posts: state.posts};
+};
 //Wires up action creator to the component
-export default connect(null, {fetchPosts:fetchPosts})(PostList);
+export default connect(mapStateToProps, {fetchPosts:fetchPosts})(PostList);
