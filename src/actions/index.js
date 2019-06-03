@@ -8,6 +8,6 @@ export const fetchPosts = () => {
     //Makes axios request and saves result in response variable
     const response = await jsonPlaceholder.get('/posts');
     //Returns axios results with type
-    dispatch({type: 'FETCH_POSTS', payload: response});
+    dispatch({type: 'FETCH_POSTS', payload: response.data});
   };
 };
